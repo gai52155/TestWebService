@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://rdws.rd.go.th/serviceRD3/checktinpinservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="https://rdws.rd.go.th/serviceRD3/checktinpinservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://rdws.rd.go.th/serviceRD3/checktinpinservice">
+      <s:element name="ServiceTIN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServiceTINResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceTINResult" type="tns:tinpin" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="tinpin">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="vMessageErr" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="vID" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="vDigitOk" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="vIsExist" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ServiceTINArr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TINs" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ServiceTINArrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceTINArrResult" type="tns:tinpin" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ServiceTINSoapIn">
+    <wsdl:part name="parameters" element="tns:ServiceTIN" />
+  </wsdl:message>
+  <wsdl:message name="ServiceTINSoapOut">
+    <wsdl:part name="parameters" element="tns:ServiceTINResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceTINArrSoapIn">
+    <wsdl:part name="parameters" element="tns:ServiceTINArr" />
+  </wsdl:message>
+  <wsdl:message name="ServiceTINArrSoapOut">
+    <wsdl:part name="parameters" element="tns:ServiceTINArrResponse" />
+  </wsdl:message>
+  <wsdl:portType name="checktinpinserviceSoap">
+    <wsdl:operation name="ServiceTIN">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check PIN</wsdl:documentation>
+      <wsdl:input message="tns:ServiceTINSoapIn" />
+      <wsdl:output message="tns:ServiceTINSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceTINArr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check TIN Array</wsdl:documentation>
+      <wsdl:input message="tns:ServiceTINArrSoapIn" />
+      <wsdl:output message="tns:ServiceTINArrSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="checktinpinserviceSoap" type="tns:checktinpinserviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ServiceTIN">
+      <soap:operation soapAction="https://rdws.rd.go.th/serviceRD3/checktinpinservice/ServiceTIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceTINArr">
+      <soap:operation soapAction="https://rdws.rd.go.th/serviceRD3/checktinpinservice/ServiceTINArr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="checktinpinservice">
+    <wsdl:port name="checktinpinserviceSoap" binding="tns:checktinpinserviceSoap">
+      <soap:address location="https://rdws.rd.go.th/serviceRD3/checktinpinservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

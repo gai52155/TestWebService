@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="TestCitizenID">
+      <implementation-class>myTest.TestCitizenID</implementation-class>
+    </service>
+  </services>
+  <clients>
+    <client name="checktinpinservice">
+      <wsdl-url>https://rdws.rd.go.th/serviceRD3/checktinpinservice.asmx?wsdl</wsdl-url>
+      <local-wsdl-file>rdws.rd.go.th/serviceRD3/checktinpinservice.asmx.wsdl</local-wsdl-file>
+      <package-name>th.go.rd.rdws.servicerd3.checktinpinservice</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>https://rdws.rd.go.th/serviceRD3/checktinpinservice.asmx?wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+  </clients>
+</jax-ws>
